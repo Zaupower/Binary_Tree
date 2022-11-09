@@ -6,9 +6,11 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Hello, World!");
-        Tree<string> tree = new Tree<string>();
+        Tree<int> tree = new Tree<int>();
 
+        tree.Add(1);
+        tree.Add(2);
+        tree.Add(3);
 
 
     }     
