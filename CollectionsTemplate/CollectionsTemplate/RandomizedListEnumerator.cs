@@ -6,7 +6,7 @@ namespace CollectionsTemplate
     public class RandomizedListEnumerator<T> : IEnumerator<T>
     {
         private List<Element<T>> _source = new List<Element<T>>();
-
+        private int position = -1;
         public RandomizedListEnumerator(IEnumerable<T> source)
         {
             foreach(var item in source)
@@ -17,42 +17,34 @@ namespace CollectionsTemplate
 
         private T _current;
 
-        public object Current => _current;
+        public object Current => _source[position].Value;
+        //{
+        //    get
+        //    {
+        //        try
+        //        {
+        //            return _source[position];
+        //        }
+        //        catch (IndexOutOfRangeException)
+        //        {
+        //            throw new InvalidOperationException();
+        //        }
+        //    }
+        //}
 
         T IEnumerator<T>.Current => _current;
 
         public bool MoveNext()
         {
-            List<int> unwatchedIndexes = new List<int> ();
-
-            for(var index = 0; index < _source.Count; index++)
-            {
-                if (!_source[index].IsWatched)
-                    unwatchedIndexes.Add(index);
-            }
-
-            if (unwatchedIndexes.Count == 0)
-                return false;
-
-            var random = new Random();
-
-            var randomUnwatchedIndexPosition = random.Next(0, unwatchedIndexes.Count);
-            var currentElementPosition = unwatchedIndexes[randomUnwatchedIndexPosition];
-
-            _source[currentElementPosition].IsWatched = true;
-
-            _current = _source[currentElementPosition].Value;
-
-            return true;
+            position++;
+            bool hasNext = position < _source.Count;
+            return (hasNext);
 
         }
 
         public void Reset()
         {
-            foreach(var item in _source)
-            {
-                item.IsWatched = false;
-            }
+            position = -1;
         }
 
         public void Dispose()

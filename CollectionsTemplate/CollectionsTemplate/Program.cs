@@ -12,9 +12,7 @@ namespace CollectionsTemplate
 
             RandomizedList<int> randomCollection = new RandomizedList<int>(new int[] 
             { 
-                4, 
-                8, 
-                15
+                1,2,3,4,5,6,7,8,9
             });
 
             foreach (var item in randomCollection)
@@ -31,8 +29,6 @@ namespace CollectionsTemplate
             {
                 Console.WriteLine(item);
             }
-
-            Console.ReadKey();
         }
     }
 }
