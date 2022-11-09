@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using BinaryTree;
+using BinaryTree.Iterable;
 using System.Linq.Expressions;
 
 internal class Program
@@ -15,6 +16,11 @@ internal class Program
         tree.Add(5);
         tree.Add(0);
 
+        GenericEnumerableList<int> list = new GenericEnumerableList<int>(new int[] {1,2,3 });
+        foreach (int item in list)
+        {
+            Console.WriteLine(item);
+        }
 
 
 

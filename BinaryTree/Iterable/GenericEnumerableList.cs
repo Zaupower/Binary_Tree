@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace BinaryTree
+namespace BinaryTree.Iterable
 {
     public class GenericEnumerableList<T> : IEnumerable<T>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BinaryTree
+namespace BinaryTree.Iterable
 {
     public class GenericListEnumerator<T> : IEnumerator<T>
     {
