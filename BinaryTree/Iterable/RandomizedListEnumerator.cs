@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CollectionsTemplate
+namespace BinaryTree
 {
-    public class RandomizedListEnumerator<T> : IEnumerator<T>
+    public class GenericListEnumerator<T> : IEnumerator<T>
     {
         private List<Element<T>> _source = new List<Element<T>>();
         private int position = -1;
-        public RandomizedListEnumerator(IEnumerable<T> source)
+        T IEnumerator<T>.Current => _current;
+        private T _current;
+
+        public GenericListEnumerator(IEnumerable<T> source)
         {
             foreach(var item in source)
             {
                 _source.Add(new Element<T> { Value = item });
             }
         }
-
-        private T _current;
 
         public object Current
         {
@@ -32,14 +33,11 @@ namespace CollectionsTemplate
             }
         }
 
-        T IEnumerator<T>.Current => _current;
-
         public bool MoveNext()
         {
             position++;
             bool hasNext = position < _source.Count;
             return (hasNext);
-
         }
 
         public void Reset()
