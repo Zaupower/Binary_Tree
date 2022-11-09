@@ -9,8 +9,12 @@ internal class Program
         Tree<int> tree = new Tree<int>();
 
         tree.Add(1);
-        tree.Add(2);
         tree.Add(3);
+        tree.Add(2);
+
+        tree.Add(5);
+        tree.Add(0);
+
 
 
     }     

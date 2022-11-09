@@ -29,19 +29,23 @@ namespace BinaryTree
 
         private void AddNode(Node<T> currentRoot, T data)
         {
-            if (currentRoot == null)
+            bool isDataNul = IsDefault(currentRoot._data);//Verify if class or struct is null without boxing on classes
+            if (isDataNul)
             {
-                currentRoot = new Node<T>(data);  //.SetData(data);
-
-            }else if(currentRoot.GetData().CompareTo(data) == 0)
+                currentRoot.SetData(data);   //.SetData(data)
+                
+                currentRoot.Left = new Node<T>();
+                currentRoot.Right = new Node<T>();
+            }
+            else if(data.CompareTo(currentRoot.GetData()) == 0)
             {
                 throw new Exception("Equal Values not allowed");
             }
-            else if(data.CompareTo(currentRoot._data) < 0)//Go left 
+            else if(data.CompareTo(currentRoot.GetData()) < 0)//Go left 
             {
                 AddNode(currentRoot.Left, data);
             }
-            else if (data.CompareTo(currentRoot._data) > 0)//Go right
+            else if (data.CompareTo(currentRoot.GetData()) > 0)//Go right
             {
                 AddNode(currentRoot.Right, data);
             }
@@ -51,6 +55,11 @@ namespace BinaryTree
         {
 
         }
+        private static readonly IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
 
+        public static bool IsDefault(T t)
+        {
+            return comparer.Equals(t, default(T));
+        }
     }
 }
