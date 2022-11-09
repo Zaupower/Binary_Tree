@@ -51,12 +51,19 @@ namespace BinaryTree
             }
         }
 
+        //Missing 
         public void InOrder()
         {
 
         }
-        private static readonly IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
 
+        //Missing 
+        public void PreOrder()
+        {
+
+        }
+
+        private static readonly IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
         public static bool IsDefault(T t)
         {
             return comparer.Equals(t, default(T));
