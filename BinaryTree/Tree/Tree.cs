@@ -3,7 +3,7 @@ using System.Data;
 
 namespace BinaryTree.Tree
 {
-    public class Tree<T> where T : IComparable
+    public class Tree<T> where T : IComparable<T>
     {
         private Node<T> _root = new Node<T>();
         private bool _isReversedReading = false;
@@ -16,16 +16,7 @@ namespace BinaryTree.Tree
 
         public void Add(T data)
         {
-            if (_root._data == null)
-            {
-                _root._data = data;
-            }
-            else
-            {
-                AddNode(_root, data);
-
-
-            }
+            AddNode(_root, data);
         }
 
         private void AddNode(Node<T> currentRoot, T data)
@@ -76,7 +67,7 @@ namespace BinaryTree.Tree
             if (currentRoot.Left != null)
                 VisitInOrder(currentRoot.Left);           
             
-            Console.WriteLine(currentRoot.GetData());
+            Console.WriteLine(currentRoot.GetData().ToString());
             
             if (currentRoot.Right != null)            
                 VisitInOrder(currentRoot.Right);            
@@ -88,7 +79,7 @@ namespace BinaryTree.Tree
             if (currentRoot.Right != null)            
                 VisitPreOrder(currentRoot.Right);            
             
-            Console.WriteLine(currentRoot.GetData());
+            Console.WriteLine(currentRoot.GetData().ToString());
 
             if (currentRoot.Left != null)            
                 VisitPreOrder(currentRoot.Left);            

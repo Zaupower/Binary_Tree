@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryTree", "BinaryTree.csproj", "{4923BC0B-1704-42C6-9F2E-0C8C2653FF38}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamResult", "..\ExamResultIComparable\ExamResult\ExamResult.csproj", "{A29AAB6F-0C53-459C-B8ED-5CE2203EA74B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamResultApp", "..\ExamResultIComparable\ExamResult\ExamResultApp.csproj", "{A29AAB6F-0C53-459C-B8ED-5CE2203EA74B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "..\Tests\Tests.csproj", "{79CC66F3-208D-4B52-83AD-D9AA6B2AEF68}"
 EndProject

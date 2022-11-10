@@ -1,6 +1,6 @@
 ﻿namespace BinaryTree.Tree
 {
-    public class Node<T> where T : IComparable
+    public class Node<T> where T : IComparable<T>
     {
         public T _data = default!;
         public Node<T> Left;

@@ -1,9 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-using BinaryTree.Iterable;
-using BinaryTree.Tree;
-using ExamResult;
-using System.Linq.Expressions;
+﻿using BinaryTree.Tree;
+using ExamResultApp;
 
+namespace BinaryTree;
 internal class Program
 {
     private static void Main(string[] args)
@@ -41,11 +39,21 @@ internal class Program
         DateTime date4 = new DateTime(2015, 12, 29);
         DateTime date5 = new DateTime(2015, 12, 30);
 
-        //ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
-        //ExamResult examResult2 = new ExamResult(1, "Antonio", Exams.PHYSICS, Score.B, date2);
-        //ExamResult examResult3 = new ExamResult(3, "Soares", Exams.ENGLISH, Score.A, date3);
-        //ExamResult examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date1);
-        //ExamResult examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
+        ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
+        ExamResult examResult2 = new ExamResult(1, "Antonio", Exams.PHYSICS, Score.B, date2);
+        ExamResult examResult3 = new ExamResult(3, "Soares", Exams.ENGLISH, Score.A, date3);
+        ExamResult examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date1);
+        ExamResult examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
+
+        Tree<ExamResult> treeExamResults = new Tree<ExamResult>(true);
+
+        treeExamResults.Add(examResult1);
+        treeExamResults.Add(examResult2);
+        treeExamResults.Add(examResult3);
+
+        treeExamResults.Add(examResult4);
+
+        treeExamResults.Traverse();
 
 
 
