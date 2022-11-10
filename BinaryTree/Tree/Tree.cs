@@ -107,10 +107,9 @@ namespace BinaryTree.Tree
             }
         }
 
-        private static readonly IEqualityComparer<T> comparer = EqualityComparer<T>.Default;
         public static bool IsDefault(T t)
         {
-            return comparer.Equals(t, default);
+            return EqualityComparer<T>.Default.Equals(t, default);
         }
     }
 }
