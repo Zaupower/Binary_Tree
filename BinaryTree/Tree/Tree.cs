@@ -35,28 +35,25 @@ namespace BinaryTree.Tree
 
             if (isDataNull)
             {
-                currentRoot.SetData(data);   //.SetData(data)
+                currentRoot.SetData(data);
 
             }
-            else if (data.CompareTo(currentRoot.GetData()) == 0)
+            else if (data.CompareTo(currentRoot.GetData()) == 0)//Verify equal values
             {
                 throw new Exception("Equal Values not allowed");
             }
-            else if (data.CompareTo(currentRoot.GetData()) < 0)//Go left 
+            else if (data.CompareTo(currentRoot.GetData()) < 0)//Go left, if left is null add Node 
             {
-                
                 if (currentRoot.Left == null)
-                {
                     currentRoot.Left = new Node<T>();
-                }
+
                 AddNode(currentRoot.Left, data);
             }
-            else if (data.CompareTo(currentRoot.GetData()) > 0)//Go right
+            else if (data.CompareTo(currentRoot.GetData()) > 0)//Go right, if right is null add Node 
             {
                 if (currentRoot.Right == null)
-                {
                     currentRoot.Right = new Node<T>();
-                }
+
                 AddNode(currentRoot.Right, data);
             }
         }
@@ -107,7 +104,7 @@ namespace BinaryTree.Tree
             }
         }
 
-        public static bool IsDefault(T t)
+        private static bool IsDefault(T t)
         {
             return EqualityComparer<T>.Default.Equals(t, default);
         }
