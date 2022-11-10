@@ -36,22 +36,21 @@ namespace BinaryTree.Tree
             if (isDataNull)
             {
                 currentRoot.SetData(data);
-
             }
             else if (data.CompareTo(currentRoot.GetData()) == 0)//Verify equal values
             {
                 throw new Exception("Equal Values not allowed");
             }
-            else if (data.CompareTo(currentRoot.GetData()) < 0)//Go left, if left is null add Node 
+            else if (data.CompareTo(currentRoot.GetData()) < 0)//Go left
             {
-                if (currentRoot.Left == null)
+                if(currentRoot.Left == null)    //if left is null add Node
                     currentRoot.Left = new Node<T>();
 
                 AddNode(currentRoot.Left, data);
             }
-            else if (data.CompareTo(currentRoot.GetData()) > 0)//Go right, if right is null add Node 
+            else if (data.CompareTo(currentRoot.GetData()) > 0)//Go right
             {
-                if (currentRoot.Right == null)
+                if(currentRoot.Right == null)   //if right is null add Node 
                     currentRoot.Right = new Node<T>();
 
                 AddNode(currentRoot.Right, data);
@@ -75,33 +74,24 @@ namespace BinaryTree.Tree
         private void VisitInOrder(Node<T> currentRoot)
         {
             if (currentRoot.Left != null)
-            {
-                VisitInOrder(currentRoot.Left);
-            }
+                VisitInOrder(currentRoot.Left);           
             
             Console.WriteLine(currentRoot.GetData());
             
-            if (currentRoot.Right != null)
-            {
-                VisitInOrder(currentRoot.Right);
-            }
+            if (currentRoot.Right != null)            
+                VisitInOrder(currentRoot.Right);            
         }
 
         //Missing 
         private void VisitPreOrder(Node<T> currentRoot)
         {
-
-            if (currentRoot.Right != null)
-            {
-                VisitPreOrder(currentRoot.Right);
-            }
+            if (currentRoot.Right != null)            
+                VisitPreOrder(currentRoot.Right);            
             
             Console.WriteLine(currentRoot.GetData());
 
-            if (currentRoot.Left != null)
-            {
-                VisitPreOrder(currentRoot.Left);
-            }
+            if (currentRoot.Left != null)            
+                VisitPreOrder(currentRoot.Left);            
         }
 
         private static bool IsDefault(T t)
