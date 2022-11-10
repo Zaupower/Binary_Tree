@@ -96,14 +96,14 @@ namespace BinaryTree.Tree
 
             if (currentRoot.Right != null)
             {
-                VisitInOrder(currentRoot.Right);
+                VisitPreOrder(currentRoot.Right);
             }
             
             Console.WriteLine(currentRoot.GetData());
 
             if (currentRoot.Left != null)
             {
-                VisitInOrder(currentRoot.Left);
+                VisitPreOrder(currentRoot.Left);
             }
         }
 

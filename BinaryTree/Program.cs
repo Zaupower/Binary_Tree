@@ -7,7 +7,7 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Tree<int> tree = new Tree<int>();
+        Tree<int> tree = new Tree<int>(true);
 
         tree.Add(1);
         tree.Add(3);
@@ -16,7 +16,7 @@ internal class Program
         tree.Add(5);
         tree.Add(0);
 
-        tree.
+        tree.Traverse();
         //GenericEnumerableList<string> list = new GenericEnumerableList<string>(new string[] {"1","2","3" });
         //foreach (string item in list)
         //{
