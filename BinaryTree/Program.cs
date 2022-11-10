@@ -17,7 +17,7 @@ internal class Program
 
         tree.Traverse();
 
-        Console.WriteLine("PreOrder");
+        Console.WriteLine("InOrderReverse");
         Tree<int> tree2 = new Tree<int>(true);
 
         tree2.Add(1);
