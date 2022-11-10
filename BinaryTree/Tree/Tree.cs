@@ -57,7 +57,7 @@ namespace BinaryTree.Tree
                     VisitInOrder(_root);
                     break;
                 case true:
-                    VisitPreOrder(_root);
+                    VisitInOrderReverse(_root);
                     break;
             }
         }
@@ -74,15 +74,15 @@ namespace BinaryTree.Tree
         }
 
         //Missing 
-        private void VisitPreOrder(Node<T> currentRoot)
+        private void VisitInOrderReverse(Node<T> currentRoot)
         {
-            if (currentRoot.Right != null)            
-                VisitPreOrder(currentRoot.Right);            
+            if (currentRoot.Right != null)
+                VisitInOrderReverse(currentRoot.Right);            
             
             Console.WriteLine(currentRoot.GetData().ToString());
 
-            if (currentRoot.Left != null)            
-                VisitPreOrder(currentRoot.Left);            
+            if (currentRoot.Left != null)
+                VisitInOrderReverse(currentRoot.Left);            
         }
 
         private static bool IsDefault(T t)
