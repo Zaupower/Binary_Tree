@@ -44,8 +44,8 @@ internal class Program
         ExamResult examResult3 = new ExamResult(3, "Soares", Exams.ENGLISH, Score.A, date3);
         ExamResult examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date1);
         ExamResult examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
-
-        Tree<ExamResult> treeExamResults = new Tree<ExamResult>(true);
+        Console.WriteLine("InOrder");
+        Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
 
         treeExamResults.Add(examResult1);
         treeExamResults.Add(examResult2);
@@ -54,6 +54,16 @@ internal class Program
         treeExamResults.Add(examResult4);
 
         treeExamResults.Traverse();
+        Console.WriteLine("InOrderReverse");
+        Tree<ExamResult> treeExamResults2 = new Tree<ExamResult>(true);
+
+        treeExamResults2.Add(examResult1);
+        treeExamResults2.Add(examResult2);
+        treeExamResults2.Add(examResult3);
+
+        treeExamResults2.Add(examResult4);
+
+        treeExamResults2.Traverse();
 
 
 
