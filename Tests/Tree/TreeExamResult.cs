@@ -83,6 +83,7 @@ namespace Tests.Tree
             CollectionAssert.AreEquivalent(listExpected, testList);
             
         }
+
         [Test]
         public void ExamResult_IsIterable()
         {
@@ -107,5 +108,6 @@ namespace Tests.Tree
             CollectionAssert.AreEquivalent(expected, testList);
         }
         //Falta testar inserir mesmo valor e esperar exception
+        //Falta testar com reverseInOrder
     }
 }
