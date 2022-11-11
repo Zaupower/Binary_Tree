@@ -1,4 +1,5 @@
-﻿using BinaryTree.Tree;
+﻿using BinaryTree.Iterable;
+using BinaryTree.Tree;
 using ExamResultApp;
 
 namespace BinaryTree;
@@ -16,7 +17,11 @@ internal class Program
         tree.Add(5);
 
         tree.Traverse();
-
+        GenericEnumerableList<int> list = tree.Traverse();
+        foreach (int item in list)
+        {
+            Console.WriteLine(item);
+        }
         Console.WriteLine("InOrderReverse");
         Tree<int> tree2 = new Tree<int>(true);
 
@@ -26,7 +31,11 @@ internal class Program
 
         tree2.Add(5);
 
-        tree2.Traverse();
+        GenericEnumerableList<int> list2 = tree2.Traverse();
+        foreach (int item in list2)
+        {
+            Console.WriteLine(item);
+        }
 
         //GenericEnumerableList<string> list = new GenericEnumerableList<string>(new string[] {"1","2","3" });
         //foreach (string item in list)
@@ -51,9 +60,13 @@ internal class Program
         treeExamResults.Add(examResult2);
         treeExamResults.Add(examResult3);
 
-        treeExamResults.Add(examResult4);
+        treeExamResults.Add(examResult4);        
+        GenericEnumerableList<ExamResult> list3 = treeExamResults.Traverse();
+        foreach (ExamResult item in list3)
+        {
+            Console.WriteLine(item);
+        }
 
-        treeExamResults.Traverse();
         Console.WriteLine("InOrderReverse");
         Tree<ExamResult> treeExamResults2 = new Tree<ExamResult>(true);
 
@@ -64,7 +77,11 @@ internal class Program
         treeExamResults2.Add(examResult4);
 
         treeExamResults2.Traverse();
-
+        GenericEnumerableList<ExamResult> list4 = treeExamResults2.Traverse();
+        foreach (ExamResult item in list4)
+        {
+            Console.WriteLine(item);
+        }
 
 
     }     

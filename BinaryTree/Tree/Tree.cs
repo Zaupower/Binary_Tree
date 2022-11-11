@@ -1,4 +1,6 @@
 ﻿
+using BinaryTree.Iterable;
+using BinaryTree.Tree.Helper;
 using System.Data;
 
 namespace BinaryTree.Tree
@@ -7,6 +9,7 @@ namespace BinaryTree.Tree
     {
         private Node<T> _root = new Node<T>();
         private bool _isReversedReading = false;
+        private AddValues<T> AddValuesHelper = new AddValues<T>();
 
         public Tree() { }
         public Tree(bool isReversedReading)
@@ -27,10 +30,11 @@ namespace BinaryTree.Tree
             if (isDataNull)
             {
                 currentRoot.SetData(data);
+                AddValuesHelper.NodeCounter++;
             }
             else if (data.CompareTo(currentRoot.GetData()) == 0)//Verify equal values
             {
-                throw new Exception("Equal Values not allowed");
+                 throw new Exception("Equal Values not allowed");
             }
             else if (data.CompareTo(currentRoot.GetData()) < 0)//Go left
             {
@@ -49,8 +53,11 @@ namespace BinaryTree.Tree
         }
 
         //Missing 
-        public void Traverse()
+        public GenericEnumerableList<T> Traverse()
         {
+            //Set Values to store all nodes
+            AddValuesHelper.setValuesSize();
+
             switch (_isReversedReading)
             {
                 case false:
@@ -60,6 +67,8 @@ namespace BinaryTree.Tree
                     VisitInOrderReverse(_root);
                     break;
             }
+            GenericEnumerableList<T> valuesList = new GenericEnumerableList<T>(AddValuesHelper.GetValues());
+            return valuesList;
         }
 
         private void VisitInOrder(Node<T> currentRoot)
@@ -67,22 +76,22 @@ namespace BinaryTree.Tree
             if (currentRoot.Left != null)
                 VisitInOrder(currentRoot.Left);           
             
-            Console.WriteLine(currentRoot.GetData().ToString());
-            
+            AddValuesHelper.addValue(currentRoot.GetData());
+
             if (currentRoot.Right != null)            
-                VisitInOrder(currentRoot.Right);            
+                VisitInOrder(currentRoot.Right);
         }
 
         //Missing 
         private void VisitInOrderReverse(Node<T> currentRoot)
         {
             if (currentRoot.Right != null)
-                VisitInOrderReverse(currentRoot.Right);            
-            
-            Console.WriteLine(currentRoot.GetData().ToString());
+                VisitInOrderReverse(currentRoot.Right);
+
+            AddValuesHelper.addValue(currentRoot.GetData());
 
             if (currentRoot.Left != null)
-                VisitInOrderReverse(currentRoot.Left);            
+                VisitInOrderReverse(currentRoot.Left);
         }
 
         private static bool IsDefault(T t)
