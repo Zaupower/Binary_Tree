@@ -17,45 +17,26 @@ namespace Tests.Tree
         //Test Traverse
 
         private Tree<ExamResult> treeExamResults;
+        private DateTime date1;
+        private DateTime date2;
+        private DateTime date3;
+        private DateTime date4;
+        private DateTime date5;
+
+        ExamResult examResult1;
+        ExamResult examResult2;
+        ExamResult examResult3;
+        ExamResult examResult4;
+        ExamResult examResult5;
 
         [SetUp]
         public void SetUp()
-        {
-            
-            treeExamResults = new Tree<ExamResult>();
-        }
-        [TearDown]
-        public void Postcondition()
-        {
-            DateTime date1 = new DateTime(2015, 12, 26);
-            DateTime date2 = new DateTime(2015, 12, 27);
-            DateTime date3 = new DateTime(2015, 12, 28);
-            DateTime date4 = new DateTime(2015, 12, 29);
-            DateTime date5 = new DateTime(2015, 12, 30);
-
-            ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
-            ExamResult examResult2 = new ExamResult(1, "Antonio", Exams.PHYSICS, Score.B, date2);
-            ExamResult examResult3 = new ExamResult(3, "Soares", Exams.ENGLISH, Score.A, date3);
-            ExamResult examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date1);
-            ExamResult examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
-            Console.WriteLine("InOrder");
-            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
-
-            treeExamResults.Add(examResult1);
-            treeExamResults.Add(examResult2);
-            treeExamResults.Add(examResult3);
-
-            treeExamResults.Add(examResult4);
-        }
-
-        [Test]
-        public void ExamResult_AddValue()
-        {
-            DateTime date1 = new DateTime(2015, 12, 26);
-            DateTime date2 = new DateTime(2015, 12, 27);
-            DateTime date3 = new DateTime(2015, 12, 28);
-            DateTime date4 = new DateTime(2015, 12, 29);
-            DateTime date5 = new DateTime(2015, 12, 30);
+        {            
+            date1 = new DateTime(2015, 12, 26);
+            date2 = new DateTime(2015, 12, 27);
+            date3 = new DateTime(2015, 12, 28);
+            date4 = new DateTime(2015, 12, 29);
+            date5 = new DateTime(2015, 12, 30);
 
             ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
             ExamResult examResult2 = new ExamResult(1, "Antonio", Exams.PHYSICS, Score.B, date2);
@@ -63,7 +44,26 @@ namespace Tests.Tree
             ExamResult examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date4);
             ExamResult examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date5);
 
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+
+            treeExamResults.Add(examResult1);
+            treeExamResults.Add(examResult2);
+            treeExamResults.Add(examResult3);
+            treeExamResults.Add(examResult4);
+            treeExamResults.Add(examResult5);
+        }
+        [TearDown]
+        public void Postcondition()
+        {           
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+        }
+
+        [Test]
+        public void ExamResult_AddValue()
+        {
             ExamResult[] exams = { examResult1, examResult2, examResult3, examResult4, examResult5 };
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+            
             for (int i = 0; i < exams.Length; i++)
             {
                 treeExamResults.Add(exams[i]);
@@ -72,27 +72,40 @@ namespace Tests.Tree
             Assert.AreEqual(treeExamResults.getNodeCounter(), exams.Length);
         }
 
-        //public void ExamResult_IsIterable()
-        //{
-        //    DateTime date1 = new DateTime(2015, 12, 26);
-        //    DateTime date2 = new DateTime(2015, 12, 27);
-        //    DateTime date3 = new DateTime(2015, 12, 28);
-        //    DateTime date4 = new DateTime(2015, 12, 29);
-        //    DateTime date5 = new DateTime(2015, 12, 30);
+        [Test]
+        public void ExamResult_IsEquivalent()
+        {          
+            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3,examResult4, examResult5 };
 
-        //    ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
-        //    ExamResult examResult2 = new ExamResult(1, "Antonio", Exams.PHYSICS, Score.B, date2);
-        //    ExamResult examResult3 = new ExamResult(3, "Soares", Exams.ENGLISH, Score.A, date3);
-        //    ExamResult examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date1);
-        //    ExamResult examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
+            GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray); 
+            GenericEnumerableList<ExamResult> listExpected = treeExamResults.Traverse();
 
-        //    GenericEnumerableList<ExamResult> list3 = treeExamResults.Traverse();
-        //    foreach (ExamResult item in list3)
-        //    {
-        //        Assert.IsInstanceOf(ExamResult, item);
+            CollectionAssert.AreEquivalent(listExpected, testList);
+            
+        }
+        [Test]
+        public void ExamResult_IsIterable()
+        {
 
-        //        Console.WriteLine(item);
-        //    }
-        //}
+            ExamResult[] testArray = new ExamResult[5];
+            int counter = 0;
+
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+
+            treeExamResults.Add(examResult1);
+            treeExamResults.Add(examResult2);
+            treeExamResults.Add(examResult3);
+            treeExamResults.Add(examResult4);
+            treeExamResults.Add(examResult5);
+            GenericEnumerableList<ExamResult> expected = treeExamResults.Traverse();
+            
+            foreach (ExamResult item in expected)
+            {
+                testArray[counter++] = item;
+            }
+            GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray);
+            CollectionAssert.AreEquivalent(expected, testList);
+        }
+        //Falta testar inserir mesmo valor e esperar exception
     }
 }
