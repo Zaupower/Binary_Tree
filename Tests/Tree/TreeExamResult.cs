@@ -76,7 +76,13 @@ namespace Tests.Tree
         public void ExamResult_IsEquivalent()
         {          
             ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3,examResult4, examResult5 };
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
 
+            treeExamResults.Add(examResult1);
+            treeExamResults.Add(examResult2);
+            treeExamResults.Add(examResult3);
+            treeExamResults.Add(examResult4);
+            treeExamResults.Add(examResult5);
             GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray); 
             GenericEnumerableList<ExamResult> listExpected = treeExamResults.Traverse();
 
