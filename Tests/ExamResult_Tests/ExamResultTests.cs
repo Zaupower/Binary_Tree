@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using ExamResultApp;
 using System.Xml.Linq;
+using NUnit.Framework.Internal;
 
 namespace ExamResultAppTests
 {
@@ -20,7 +21,7 @@ namespace ExamResultAppTests
         [SetUp]
         public void SetUp()
         {
-            ID = 1;
+            ID = 2;
             Date = new DateTime(2015, 12, 26);
             Name = "Marcelo";
             Exam = Exams.ENGLISH;
@@ -60,17 +61,21 @@ namespace ExamResultAppTests
         }
 
         [Test]
-        public void CompareTo_SameNameAndDateAndGreaterID_UseID()
+        [TestCase(1, 2015,12,26, "Marcelo", Exams.ENGLISH, Score.A, 1)]
+        [TestCase(2, 2015, 12, 26, "Marcelo", Exams.ENGLISH, Score.A, 0)]
+        [TestCase(3, 2015, 12, 26, "Marcelo", Exams.ENGLISH, Score.A, -1)]
+        public void CompareTo_SameNameSameDateGreaterID_UseID(
+            int id, int year,int month, int day,
+            string name, Exams exam,Score score,int expected)
         {
-            ID = 2;
-            Date = new DateTime(2015, 12, 26);
-            Name = "Marcelo";
-            Exam = Exams.ENGLISH;
-            Score = Score.A;
-            Date = new DateTime(2015, 12, 26);
+            ID = id;
+            Date = new DateTime(year,month, day);
+            Name = name;
+            Exam = exam;
+            Score = score;
             ExamResult examResultLess = new ExamResult(ID, Name, Exam, Score, Date);
-
-            Assert.Less(examResult.CompareTo(examResultLess), 0);
-        }
+            int compareResult = examResult.CompareTo(examResultLess);
+            Assert.AreEqual(compareResult, expected);
+        }        
     } 
 }
