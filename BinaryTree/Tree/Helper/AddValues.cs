@@ -8,7 +8,7 @@ namespace BinaryTree.Tree.Helper
 {
     public class AddValues<T>
     {
-        public int NodeCounter { get; set; }
+        public int NodeCounter { get; set; } = 0;
         private T[] Values;
         private int pointer = 0;
 

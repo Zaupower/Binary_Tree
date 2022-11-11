@@ -94,6 +94,10 @@ namespace BinaryTree.Tree
                 VisitInOrderReverse(currentRoot.Left);
         }
 
+        public int getNodeCounter()
+        {
+            return AddValuesHelper.NodeCounter;
+        }
         private static bool IsDefault(T t)
         {
             return EqualityComparer<T>.Default.Equals(t, default);
