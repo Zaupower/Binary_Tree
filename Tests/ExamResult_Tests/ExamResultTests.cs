@@ -60,22 +60,26 @@ namespace ExamResultAppTests
             Assert.AreEqual(examResult.Date, Date);
         }
 
-        [Test]
-        [TestCase(1, 2015,12,26, "Marcelo", Exams.ENGLISH, Score.A, 1)]
-        [TestCase(2, 2015, 12, 26, "Marcelo", Exams.ENGLISH, Score.A, 0)]
-        [TestCase(3, 2015, 12, 26, "Marcelo", Exams.ENGLISH, Score.A, -1)]
-        public void CompareTo_SameNameSameDateGreaterID_UseID(
-            int id, int year,int month, int day,
-            string name, Exams exam,Score score,int expected)
+        [Test, Combinatorial]
+        public void CompareTo_SameNameSameDateDifferentID_UseID(
+            [Values(1,2,3)]int id,
+            [Values(2014, 2015, 2016)] int year)
         {
             ID = id;
-            Date = new DateTime(year,month, day);
-            Name = name;
-            Exam = exam;
-            Score = score;
+            Date = new DateTime(year,12, 26);
+            Name = "Marcelo";
+            Exam = Exams.ENGLISH;
+            Score = Score.A;
             ExamResult examResultLess = new ExamResult(ID, Name, Exam, Score, Date);
             int compareResult = examResult.CompareTo(examResultLess);
-            Assert.AreEqual(compareResult, expected);
-        }        
+            Assert.AreEqual(compareResult, getNextExpected());
+        }
+        private int counter = -1;
+        private int getNextExpected()
+        {
+            counter++;
+            int[] expected = {1,1,-1,1,0,-1,1,-1,-1,0 };
+            return expected[counter];
+        }
     } 
 }
