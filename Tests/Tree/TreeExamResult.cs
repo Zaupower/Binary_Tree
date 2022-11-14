@@ -105,7 +105,6 @@ namespace Tests.Tree
         [Test]
         public void ExamResult_AddExistingValue_ThrowException()
         {
-            treeExamResults.Add(examResult1);
             Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(examResult1));
         }
     }
