@@ -10,24 +10,23 @@ using System.Threading.Tasks;
 
 namespace Tests.Tree
 {
-    [TestFixture]
-    public class TreeExamResult
-    {
-        //Test Add
+    public class TreeExamResultReverse
+    {//Test Add
         //Test Traverse
 
         private Tree<ExamResult> treeExamResults;
+        private bool reversed = true;
         private DateTime date1;
         private DateTime date2;
         private DateTime date3;
         private DateTime date4;
-        private DateTime date5;
+        private DateTime date5;       
 
-        private ExamResult examResult1;
-        private ExamResult examResult2;
-        private ExamResult examResult3;
-        private ExamResult examResult4;
-        private ExamResult examResult5;
+        ExamResult examResult1;
+        ExamResult examResult2;
+        ExamResult examResult3;
+        ExamResult examResult4;
+        ExamResult examResult5;
 
         [SetUp]
         public void SetUp()
@@ -44,7 +43,7 @@ namespace Tests.Tree
             examResult4 = new ExamResult(2, "Marcelo", Exams.ENGLISH, Score.A, date4);
             examResult5 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date5);
 
-            treeExamResults = new Tree<ExamResult>();
+            treeExamResults = new Tree<ExamResult>(reversed);
 
             treeExamResults.Add(examResult1);
             treeExamResults.Add(examResult2);
@@ -54,15 +53,15 @@ namespace Tests.Tree
         }
         [TearDown]
         public void Postcondition()
-        {
-            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+        {          
+            treeExamResults = new Tree<ExamResult>(reversed);
         }
 
         [Test]
         public void ExamResult_AddValue()
         {
             ExamResult[] exams = { examResult1, examResult2, examResult3, examResult4, examResult5 };
-            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>(reversed);
 
             for (int i = 0; i < exams.Length; i++)
             {
@@ -75,13 +74,11 @@ namespace Tests.Tree
         [Test]
         public void ExamResult_IsEquivalent()
         {
-            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3, examResult4, examResult5 };
-            
+            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3, examResult4, examResult5 };            
             GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray);
             GenericEnumerableList<ExamResult> listExpected = treeExamResults.Traverse();
 
             CollectionAssert.AreEquivalent(listExpected, testList);
-
         }
 
         [Test]
@@ -90,7 +87,6 @@ namespace Tests.Tree
 
             ExamResult[] testArray = new ExamResult[5];
             int counter = 0;
-
             GenericEnumerableList<ExamResult> expected = treeExamResults.Traverse();
 
             foreach (ExamResult item in expected)
@@ -100,11 +96,15 @@ namespace Tests.Tree
             GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray);
             CollectionAssert.AreEquivalent(expected, testList);
         }
-        
-        
+
+
         [Test]
         public void ExamResult_AddExistingValue_ThrowException()
         {
+            date1 = new DateTime(2015, 12, 26);
+            ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
+
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>(reversed);
             treeExamResults.Add(examResult1);
             Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(examResult1));
         }

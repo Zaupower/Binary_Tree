@@ -60,7 +60,6 @@ internal class Program
         }
 
         Console.WriteLine("InOrderReverse");
-        ExamResult examResult6;
         Tree<ExamResult> treeExamResults2 = new Tree<ExamResult>(true);
         treeExamResults2.Add(examResult1);
         treeExamResults2.Add(examResult2);
