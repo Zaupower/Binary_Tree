@@ -2,19 +2,12 @@
 using BinaryTree.Tree;
 using ExamResultApp;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Tests.Tree
 {
     [TestFixture]
     public class TreeExamResult
     {
-        //Test Add
-        //Test Traverse
 
         private Tree<ExamResult> treeExamResults;
         private DateTime date1;

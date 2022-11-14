@@ -15,7 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\BinaryTree\BinaryTree.csproj" />
     <ProjectReference Include="..\ExamResultAp\ExamResultApp.csproj" />
-    <ProjectReference Include="..\ExamResultIComparable\ExamResult\ExamResultApp.csproj" />
   </ItemGroup>
 
 </Project>
