@@ -19,7 +19,8 @@ namespace BinaryTree.Tree
 
         public void Add(T data)
         {
-            AddNode(_root, data);
+            if (!IsDefault(data))
+                AddNode(_root, data);
         }
 
         private void AddNode(Node<T> currentRoot, T data)
@@ -34,7 +35,7 @@ namespace BinaryTree.Tree
             }
             else if (data.CompareTo(currentRoot.GetData()) == 0)//Verify equal values
             {
-                 throw new Exception("Equal Values not allowed");
+                throw new InvalidOperationException("Equal Values not allowed");
             }
             else if (data.CompareTo(currentRoot.GetData()) < 0)//Go left
             {

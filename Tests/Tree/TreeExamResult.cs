@@ -31,7 +31,7 @@ namespace Tests.Tree
 
         [SetUp]
         public void SetUp()
-        {            
+        {
             date1 = new DateTime(2015, 12, 26);
             date2 = new DateTime(2015, 12, 27);
             date3 = new DateTime(2015, 12, 28);
@@ -54,7 +54,7 @@ namespace Tests.Tree
         }
         [TearDown]
         public void Postcondition()
-        {           
+        {
             Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
         }
 
@@ -63,7 +63,7 @@ namespace Tests.Tree
         {
             ExamResult[] exams = { examResult1, examResult2, examResult3, examResult4, examResult5 };
             Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
-            
+
             for (int i = 0; i < exams.Length; i++)
             {
                 treeExamResults.Add(exams[i]);
@@ -74,8 +74,8 @@ namespace Tests.Tree
 
         [Test]
         public void ExamResult_IsEquivalent()
-        {          
-            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3,examResult4, examResult5 };
+        {
+            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3, examResult4, examResult5 };
             Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
 
             treeExamResults.Add(examResult1);
@@ -83,11 +83,11 @@ namespace Tests.Tree
             treeExamResults.Add(examResult3);
             treeExamResults.Add(examResult4);
             treeExamResults.Add(examResult5);
-            GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray); 
+            GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray);
             GenericEnumerableList<ExamResult> listExpected = treeExamResults.Traverse();
 
             CollectionAssert.AreEquivalent(listExpected, testList);
-            
+
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace Tests.Tree
             treeExamResults.Add(examResult4);
             treeExamResults.Add(examResult5);
             GenericEnumerableList<ExamResult> expected = treeExamResults.Traverse();
-            
+
             foreach (ExamResult item in expected)
             {
                 testArray[counter++] = item;
@@ -113,7 +113,17 @@ namespace Tests.Tree
             GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray);
             CollectionAssert.AreEquivalent(expected, testList);
         }
-        //Falta testar inserir mesmo valor e esperar exception
+        
         //Falta testar com reverseInOrder
+        [Test]
+        public void ExamResult_AddExistingValue_ThrowException()
+        {
+            date1 = new DateTime(2015, 12, 26);
+            ExamResult examResult1 = new ExamResult(1, "Marcelo", Exams.ENGLISH, Score.A, date1);
+
+            Tree<ExamResult> treeExamResults = new Tree<ExamResult>();
+            treeExamResults.Add(examResult1);
+            Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(examResult1));
+        }
     }
 }
