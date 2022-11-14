@@ -61,7 +61,7 @@ namespace ExamResultAppTests
         }
 
         [Test, Combinatorial]
-        public void CompareTo_SameNameSameDateDifferentID_UseID(
+        public void CompareTo_Combinatorial_ReturnCorrectValue(
             [Values(1,2,3)]int id,
             [Values(2014, 2015, 2016)] int year)
         {

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ExamResultIComparable\ExamResultIComparable\ExamResult\ExamResultApp.csproj" />
     <ProjectReference Include="..\BinaryTree\BinaryTree.csproj" />
     <ProjectReference Include="..\ExamResultIComparable\ExamResult\ExamResultApp.csproj" />
   </ItemGroup>
