@@ -120,12 +120,6 @@ namespace Tests.Tree
                 Assert.AreEqual(resultReversed[i], resultNotReversed[totalArrayLength - i]);
 
             }
-
-            
-            //Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(Values[1]));
         }
-
-
-        //Test reversed order in int and Exam result, iterating from start and other from end to the middle
     }
 }

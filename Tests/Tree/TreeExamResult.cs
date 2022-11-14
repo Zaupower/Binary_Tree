@@ -1,6 +1,6 @@
 ﻿using BinaryTree.Iterable;
 using BinaryTree.Tree;
-using ExamResultApp;
+using ExamResultAp;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;

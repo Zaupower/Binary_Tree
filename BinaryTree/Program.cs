@@ -1,6 +1,6 @@
 ﻿using BinaryTree.Iterable;
 using BinaryTree.Tree;
-using ExamResultApp;
+using ExamResultAp;
 
 namespace BinaryTree;
 internal class Program

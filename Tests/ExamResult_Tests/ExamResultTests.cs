@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using ExamResultApp;
+using ExamResultAp;
 using System.Xml.Linq;
 using NUnit.Framework.Internal;
 
@@ -61,7 +61,7 @@ namespace ExamResultAppTests
         }
 
         [Test, Combinatorial]
-        public void CompareTo_Combinatorial_ReturnCorrectValue(
+        public void CompareTo_SameNameSameDateDifferentID_UseID(
             [Values(1,2,3)]int id,
             [Values(2014, 2015, 2016)] int year)
         {
