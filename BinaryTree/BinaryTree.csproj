@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ExamResultIComparable\ExamResultIComparable\ExamResult\ExamResultApp.csproj" />
     <ProjectReference Include="..\ExamResultIComparable\ExamResult\ExamResultApp.csproj" />
   </ItemGroup>
 
