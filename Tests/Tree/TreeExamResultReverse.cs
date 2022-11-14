@@ -1,6 +1,6 @@
 ﻿using BinaryTree.Iterable;
 using BinaryTree.Tree;
-using ExamResultAp;
+using ExamResultApp;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using System;

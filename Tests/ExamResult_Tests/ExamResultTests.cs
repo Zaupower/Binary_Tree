@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using ExamResultAp;
+using ExamResultApp;
 using System.Xml.Linq;
 using NUnit.Framework.Internal;
 
