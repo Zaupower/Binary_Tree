@@ -1,6 +1,7 @@
 ﻿using BinaryTree.Iterable;
 using BinaryTree.Tree;
 using ExamResultApp;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace Tests.Tree
         private DateTime date2;
         private DateTime date3;
         private DateTime date4;
-        private DateTime date5;       
+        private DateTime date5;
 
         ExamResult examResult1;
         ExamResult examResult2;
@@ -53,7 +54,7 @@ namespace Tests.Tree
         }
         [TearDown]
         public void Postcondition()
-        {          
+        {
             treeExamResults = new Tree<ExamResult>(reversed);
         }
 
@@ -74,7 +75,7 @@ namespace Tests.Tree
         [Test]
         public void ExamResult_IsEquivalent()
         {
-            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3, examResult4, examResult5 };            
+            ExamResult[] testArray = new ExamResult[] { examResult1, examResult2, examResult3, examResult4, examResult5 };
             GenericEnumerableList<ExamResult> testList = new GenericEnumerableList<ExamResult>(testArray);
             GenericEnumerableList<ExamResult> listExpected = treeExamResults.Traverse();
 
@@ -107,6 +108,42 @@ namespace Tests.Tree
             Tree<ExamResult> treeExamResults = new Tree<ExamResult>(reversed);
             treeExamResults.Add(examResult1);
             Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(examResult1));
+        }
+
+        [Test]
+        public void ExamResult_IsReversed()
+        {
+            Tree<ExamResult> treeExamResultsNotReversed = new Tree<ExamResult>();
+            ExamResult[] Values = new ExamResult[] { examResult1, examResult2, examResult3, examResult4, examResult5 };
+            for (int i = 0; i < Values.Length; i++)
+            {
+                treeExamResultsNotReversed.Add(Values[i]);
+            }
+
+            GenericEnumerableList<ExamResult> Reversed = treeExamResults.Traverse();
+            GenericEnumerableList<ExamResult> NotReversed = treeExamResultsNotReversed.Traverse();
+
+            ExamResult[] resultReversed = new ExamResult[Reversed.Count()];
+            int counter = 0;
+            foreach (ExamResult item in Reversed)
+            {
+                resultReversed[counter++] = item;
+            }
+
+
+            ExamResult[] resultNotReversed = new ExamResult[NotReversed.Count()];
+            int counter2 = 0;
+            foreach (ExamResult item in NotReversed)
+            {
+                resultNotReversed[counter2++] = item;
+            }
+
+            int totalArrayLength = resultReversed.Length;
+            for (int i = totalArrayLength; i < totalArrayLength / 2; i--)
+            {
+                Assert.AreEqual(resultReversed[i], resultNotReversed[totalArrayLength - i]);
+
+            }
         }
     }
 }
