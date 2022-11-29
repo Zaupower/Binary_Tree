@@ -7,7 +7,7 @@ namespace Tests.Tree
     public class TreeIntReverse
     {
 
-        private Tree<int> treeExamResults;
+        private Tree<int> treeInt;
         private int[] Values;
         private int SizeValues = 7;
         private bool reversed = true;
@@ -16,7 +16,7 @@ namespace Tests.Tree
         public void SetUp()
         {
 
-            treeExamResults = new Tree<int>(reversed);
+            treeInt = new Tree<int>(reversed);
             Values = new int[SizeValues];
 
             for (int i = 0; i < SizeValues; i++)
@@ -25,20 +25,20 @@ namespace Tests.Tree
             }
             for (int i = 0; i < Values.Length; i++)
             {
-                treeExamResults.Add(Values[i]);
+                treeInt.Add(Values[i]);
             }
         }
         [TearDown]
         public void Postcondition()
         {
-            treeExamResults = new Tree<int>(reversed);
+            treeInt = new Tree<int>(reversed);
             Values = new int[] { };
         }
 
         [Test]
         public void Int_AddValue()
         {
-            Assert.AreEqual(treeExamResults.getNodeCounter(), Values.Length);
+            Assert.AreEqual(treeInt.getNodeCounter(), Values.Length);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Tests.Tree
             }
 
             GenericEnumerableList<int> testList = new GenericEnumerableList<int>(testArray);
-            GenericEnumerableList<int> listExpected = treeExamResults.Traverse();
+            GenericEnumerableList<int> listExpected = treeInt.Traverse();
 
             CollectionAssert.AreEquivalent(listExpected, testList);
 
@@ -65,7 +65,7 @@ namespace Tests.Tree
             int[] testArray = new int[Values.Length];
             int counter = 0;
 
-            GenericEnumerableList<int> expected = treeExamResults.Traverse();
+            GenericEnumerableList<int> expected = treeInt.Traverse();
 
             foreach (int item in expected)
             {
@@ -78,21 +78,21 @@ namespace Tests.Tree
         [Test]
         public void Int_AddExistingValue_ThrowException()
         {
-            Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(Values[0]));
+            Assert.Throws<InvalidOperationException>(() => treeInt.Add(Values[0]));
         }
 
         [Test]
         public void Int_IsReversed()
         {
-            Tree<int> treeExamResultsNotReversed = new Tree<int>();
+            Tree<int> treeIntNotReversed = new Tree<int>();
             
             for (int i = 0; i < Values.Length; i++)
             {
-                treeExamResultsNotReversed.Add(Values[i]);
+                treeIntNotReversed.Add(Values[i]);
             }
 
-            GenericEnumerableList<int> Reversed = treeExamResults.Traverse();
-            GenericEnumerableList<int> NotReversed = treeExamResultsNotReversed.Traverse();
+            GenericEnumerableList<int> Reversed = treeInt.Traverse();
+            GenericEnumerableList<int> NotReversed = treeIntNotReversed.Traverse();
 
             int[] resultReversed = new int[Reversed.Count()];
             int counter = 0;
