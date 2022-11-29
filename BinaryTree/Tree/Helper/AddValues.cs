@@ -9,23 +9,23 @@ namespace BinaryTree.Tree.Helper
     public class AddValues<T>
     {
         public int NodeCounter { get; set; } = 0;
-        private T[] Values;
-        private int pointer = 0;
+        private T[] _values;
+        private int _pointer = 0;
 
         public void addValue(T value)
         {
-            Values[pointer++] = value;  
+            _values[_pointer++] = value;  
         }
 
         public void setValuesSize()
         {
-            Values = new T[NodeCounter];
-            pointer = 0;
+            _values = new T[NodeCounter];
+            _pointer = 0;
         }
 
         public T[] GetValues()
         {
-           return this.Values;
+           return this._values;
         }
 
     }
