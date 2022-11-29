@@ -1,11 +1,12 @@
 ﻿
 using BinaryTree.Iterable;
 using BinaryTree.Tree.Helper;
+using System.Collections;
 using System.Data;
 
 namespace BinaryTree.Tree
 {
-    public class Tree<T> where T : IComparable<T>
+    public class Tree<T> : IEnumerable<T> where T : IComparable<T>
     {
         private Node<T> _root = new Node<T>();
         private bool _isReversedReading = false;
@@ -102,6 +103,16 @@ namespace BinaryTree.Tree
         private static bool IsDefault(T t)
         {
             return EqualityComparer<T>.Default.Equals(t, default);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return ((IEnumerable<T>)Traverse()).GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Traverse().GetEnumerator();
         }
     }
 }
