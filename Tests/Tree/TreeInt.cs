@@ -9,14 +9,14 @@ namespace Tests.Tree
     public class TreeInt
     {
 
-        private Tree<int> treeExamResults;
+        private Tree<int> treeInt;
         private int[] Values;
         private int SizeValues = 7;
         [SetUp]
         public void SetUp()
         {
 
-            treeExamResults = new Tree<int>();
+            treeInt = new Tree<int>();
             Values = new int[SizeValues];
 
             for (int i = 0; i < SizeValues; i++)
@@ -25,20 +25,20 @@ namespace Tests.Tree
             }
             for (int i = 0; i < Values.Length; i++)
             {
-                treeExamResults.Add(Values[i]);
+                treeInt.Add(Values[i]);
             }
         }
         [TearDown]
         public void Postcondition()
         {
-            treeExamResults = new Tree<int>();
+            treeInt = new Tree<int>();
             Values = new int[] { };
         }
 
         [Test]
         public void Int_AddValue()
         {
-            Assert.AreEqual(treeExamResults.getNodeCounter(), Values.Length);
+            Assert.AreEqual(treeInt.getNodeCounter(), Values.Length);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Tests.Tree
             }
 
             GenericEnumerableList<int> testList = new GenericEnumerableList<int>(testArray);
-            GenericEnumerableList<int> listExpected = treeExamResults.Traverse();
+            GenericEnumerableList<int> listExpected = treeInt.Traverse();
 
             CollectionAssert.AreEquivalent(listExpected, testList);
 
@@ -65,7 +65,7 @@ namespace Tests.Tree
             int[] testArray = new int[Values.Length];
             int counter = 0;
 
-            GenericEnumerableList<int> expected = treeExamResults.Traverse();
+            GenericEnumerableList<int> expected = treeInt.Traverse();
 
             foreach (int item in expected)
             {
@@ -78,7 +78,7 @@ namespace Tests.Tree
         [Test]
         public void ExamResult_AddExistingValue_ThrowException()
         {
-            Assert.Throws<InvalidOperationException>(() => treeExamResults.Add(Values[1]));
+            Assert.Throws<InvalidOperationException>(() => treeInt.Add(Values[1]));
         }
     }
 }
